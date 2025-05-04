@@ -1,0 +1,176 @@
+.arena-overlay {
+    pointer-events: auto;
+    z-index: 2147483647;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.arena-overlay--active {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+    min-width: 200px;
+    box-shadow: 0 2px 10px #0008;
+}
+
+.arena-save-button {
+    font: 600 14px/1 system-ui;
+    background: rgb(0, 0, 0);
+    color: white;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0;
+}
+
+.arena-save-button .arena-logo-icon {
+    width: 60%;
+    height: 60%;
+    filter: invert(1);
+}
+
+.arena-save-button .arena-status-text {
+    display: none;
+    font-size: 16px;
+    line-height: 1;
+    color: white;
+}
+
+.arena-save-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.arena-save-button:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.arena-board-selector {
+    color: white;
+    font: 13px/1.4 system-ui;
+    padding-top: 8px;
+    /* margin-top: 8px; */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.arena-board-selector-header {
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.arena-board-selector-recents,
+.arena-board-selector-search {
+    /* margin-bottom: 10px; */
+}
+
+.arena-list-title {
+    font-size: 11px;
+    color: #ccc;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+.arena-search-input {
+    all: unset;
+    box-sizing: border-box;
+    width: 100%;
+    background: #fff1;
+    border: 1px solid #fff3;
+    border-radius: 3px;
+    padding: 5px 8px;
+    color: white;
+    /* margin-bottom: 8px; */
+}
+
+.arena-search-input:focus {
+    border-color: #fff6;
+}
+
+.arena-board-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 150px;
+    overflow-y: hidden;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+/* Add border specifically to recent list */
+.arena-recent-list {
+    border: 1px solid #fff3;
+    border-radius: 3px; /* Re-apply radius if needed */
+}
+
+.arena-search-results-list {
+    /* border: 1px solid transparent; */
+    margin-bottom: 0px;
+}
+
+/* Remove scrollbar styles */
+/*
+.arena-board-list::-webkit-scrollbar {
+    width: 5px;
+}
+.arena-board-list::-webkit-scrollbar-track {
+    background: #fff1;
+}
+.arena-board-list::-webkit-scrollbar-thumb {
+    background: #fff4;
+    border-radius: 3px;
+}
+.arena-board-list::-webkit-scrollbar-thumb:hover {
+    background: #fff6;
+}
+*/
+
+.arena-board-list li {
+    padding: 6px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #fff2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.arena-board-list li:last-child {
+    border-bottom: none;
+}
+
+.arena-board-list li:hover {
+    background: #eee2;
+}
+
+.arena-search-message {
+    font-size: 12px;
+    color: #aaa;
+    padding: 10px;
+    text-align: center;
+}
+
+.arena-cancel-button {
+    all: unset;
+    font: 600 13px/1 system-ui;
+    background: rgb(26, 26, 26);
+    color: rgb(229, 229, 229);
+    padding: 6px 8px;
+    border-radius: 2px;
+    /* margin-top: 5px; */
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.arena-cancel-button:hover {
+    border-color: #4f4f4f;
+}
