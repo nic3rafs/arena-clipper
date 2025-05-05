@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "update-version": "node scripts/update-version.js",
-    "build:chrome": "pnpm clean && tsc && vite build && cd dist && zip -r -FS ../build/arena-clipper-chrome.zip . && cd ..",
-    "build:firefox": "pnpm clean && tsc && BROWSER=firefox vite build && cd dist && zip -r -FS ../build/arena-clipper-firefox.zip . && cd .."
+    "build:chrome": "pnpm clean && mkdir -p build && tsc && vite build && cd dist && zip -r -FS ../build/arena-clipper-chrome.zip . && cd ..",
+    "build:firefox": "pnpm clean && mkdir -p build && tsc && BROWSER=firefox vite build && cd dist && zip -r -FS ../build/arena-clipper-firefox.zip . && cd .."
   },
   "devDependencies": {
     "@types/node": "^22.15.3",

@@ -7,19 +7,31 @@ if (!newVersion) {
   process.exit(1);
 }
 
-// Update package.json
-const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
-packageJson.version = newVersion;
-fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2) + '\n');
-
-// Update manifest.json
-const manifestJson = JSON.parse(fs.readFileSync('./manifest.json', 'utf8'));
-manifestJson.version = newVersion;
-fs.writeFileSync('./manifest.json', JSON.stringify(manifestJson, null, 2) + '\n');
-
-// Update manifest.firefox.json
-const manifestFirefoxJson = JSON.parse(fs.readFileSync('./manifest.firefox.json', 'utf8'));
-manifestFirefoxJson.version = newVersion;
-fs.writeFileSync('./manifest.firefox.json', JSON.stringify(manifestFirefoxJson, null, 2) + '\n');
-
-console.log(`Version updated to ${newVersion} in all files`); 
+try {
+  // Update package.json
+  const packagePath = './package.json';
+  const packageContent = fs.readFileSync(packagePath, 'utf8');
+  const packageJson = JSON.parse(packageContent);
+  const oldVersion = packageJson.version;
+  packageJson.version = newVersion;
+  fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2) + '\n');
+  
+  // Update manifest.json
+  const manifestPath = './manifest.json';
+  const manifestContent = fs.readFileSync(manifestPath, 'utf8');
+  const manifestJson = JSON.parse(manifestContent);
+  manifestJson.version = newVersion;
+  fs.writeFileSync(manifestPath, JSON.stringify(manifestJson, null, 2) + '\n');
+  
+  // Update manifest.firefox.json
+  const ffManifestPath = './manifest.firefox.json';
+  const ffManifestContent = fs.readFileSync(ffManifestPath, 'utf8');
+  const manifestFirefoxJson = JSON.parse(ffManifestContent);
+  manifestFirefoxJson.version = newVersion;
+  fs.writeFileSync(ffManifestPath, JSON.stringify(manifestFirefoxJson, null, 2) + '\n');
+  
+  console.log(`✅ Version updated from ${oldVersion} to ${newVersion} in all files`);
+} catch (error) {
+  console.error(`❌ Error updating version: ${error.message}`);
+  process.exit(1);
+} 
