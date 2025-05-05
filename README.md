@@ -4,7 +4,13 @@ A simple browser extension that allows you to quickly save images from any webpa
 
 ## Description
 
-This extension adds a small save icon ("⧉") when you hover over images on most websites. Clicking the icon initiates a process to save that image to one of your Are.na boards.
+This extension adds a small save icon ("**") when you hover over images on most websites. Clicking the icon initiates a process to save that image to one of your Are.na boards.
+
+![Save button appears on hover](./screenshots/screenshot1.png)
+
+After clicking the save button, a board selector appears allowing you to choose where to save the image:
+
+![Board selection interface](./screenshots/screenshot2.png)
 
 ## Features
 
@@ -19,14 +25,14 @@ This extension adds a small save icon ("⧉") when you hover over images on most
 ## Installation from GitHub
 
 ### Chrome/Edge
-1. Download the latest `arena-clipper-chrome.zip` from the [Releases page](https://github.com/yourusername/arena-clipper/releases)
+1. Download the latest `arena-clipper-chrome.zip` from the [Releases page](https://github.com/nic3rafs/arena-clipper/releases)
 2. Extract the zip file
 3. Open Chrome/Edge and navigate to `chrome://extensions` or `edge://extensions`
 4. Enable "Developer mode"
 5. Click "Load unpacked" and select the extracted folder
 
 ### Firefox
-1. Download the latest `arena-clipper-firefox.zip` from the [Releases page](https://github.com/yourusername/arena-clipper/releases)
+1. Download the latest `arena-clipper-firefox.zip` from the [Releases page](https://github.com/nic3rafs/arena-clipper/releases)
 2. In Firefox, open `about:addons`
 3. Click the gear icon and select "Install Add-on From File..."
 4. Select the downloaded zip file
