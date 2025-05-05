@@ -128,3 +128,8 @@ Under the following terms:
 - NonCommercial — You may not use the material for commercial purposes
 
 For the full license text, see [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
+
+## Author
+
+- Twitter: [@vldsvrk](https://x.com/vldsvrk)
+- Website: [vladsavruk.com](https://vladsavruk.com)
