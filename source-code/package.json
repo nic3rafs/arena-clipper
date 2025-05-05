@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev:firefox": "BROWSER=firefox vite",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "build:chrome": "pnpm clean && tsc && vite build && cd dist && zip -r -FS ../arena-clipper-chrome.zip . && cd ..",
+    "build:firefox": "pnpm clean && tsc && BROWSER=firefox vite build && cd dist && zip -r -FS ../arena-clipper-firefox.zip . && cd .."
   },
   "devDependencies": {
     "@types/node": "^22.15.3",

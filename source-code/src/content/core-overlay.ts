@@ -1,9 +1,9 @@
-import { searchArenaBoards } from "../arena-api"; // Need this for searching
+import { searchArenaBoards, type Board } from "../arena-api"; // Need this for searching
 import '../style.css'; // Import the CSS file directly
 import browser from "webextension-polyfill"; // Import the browser object
 
 // Define Board type if needed (might be better in a shared types file later)
-type Board = { id: number; title: string };
+// type Board = { id: number; title: string }; // Removed - now imported
 
 let activeOverlay: { img: HTMLImageElement, box: HTMLDivElement, timerId: number | null } | null = null;
 

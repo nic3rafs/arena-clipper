@@ -38,6 +38,25 @@ To install this extension locally for development:
 
 **Note:** For Firefox, the extension will be unloaded when you close the browser unless packaged and installed permanently.
 
+### Running the Development Server
+
+Once you have cloned the repository and installed dependencies (`pnpm install` or `npm install`), you can run the development server:
+
+*   **For Chrome/Edge (or default):**
+    ```bash
+    pnpm dev
+    # or
+    npm run dev
+    ```
+*   **For Firefox:**
+    ```bash
+    pnpm dev:firefox
+    # or
+    npm run dev:firefox
+    ```
+
+This will start Vite's development server. Changes to the source code should trigger automatic reloading of the extension in your browser (you might need to manually reload the extension once initially after starting the dev server). Remember to load the unpacked extension as described above if you haven't already.
+
 ## Configuration
 
 Before the authentication flow can work, you need to replace the placeholder Are.na Client ID:
@@ -75,21 +94,32 @@ Before the authentication flow can work, you need to replace the placeholder Are
 
 ## Building (Optional)
 
-You can use tools like `web-ext` to lint, build, and package the extension for distribution:
+To create distributable `.zip` packages for each browser:
 
-```bash
-# Install web-ext (if you haven't already)
-npm install --global web-ext
+*   **Build for Chrome (Manifest V3):**
+    ```bash
+    pnpm run build:chrome
+    # or
+    npm run build:chrome
+    ```
+    This command will:
+    1.  Clean the previous build output (`dist/` directory).
+    2.  Run the TypeScript compiler (`tsc`) for type checking.
+    3.  Run `vite build` using `manifest.json`.
+    4.  Create a `arena-clipper-chrome.zip` file in the project root containing the built extension.
 
-# Lint the extension (checks manifest files, etc.)
-web-ext lint --source-dir ./ --ignore-files node_modules/**
+*   **Build for Firefox (Manifest V2):**
+    ```bash
+    pnpm run build:firefox
+    # or
+    npm run build:firefox
+    ```
+    This command will:
+    1.  Clean the previous build output (`dist/` directory).
+    2.  Run the TypeScript compiler (`tsc`) for type checking.
+    3.  Run `vite build` using `manifest.firefox.json` (via the `BROWSER=firefox` environment variable).
+    4.  Create a `arena-clipper-firefox.zip` file in the project root containing the built extension.
 
-# Build for Firefox (creates a .zip file)
-web-ext build --source-dir ./ --filename arena-clipper-firefox.zip --manifest manifest.firefox.json --overwrite-dest --ignore-files node_modules/** *.git*
-
-# Build for Chrome (creates a .zip file - requires adjusting manifest path if needed)
-# Note: web-ext primarily targets Firefox manifest, manual checks might be needed for Chrome V3 specifics
-web-ext build --source-dir ./ --filename arena-clipper-chrome.zip --manifest manifest.json --overwrite-dest --ignore-files node_modules/** *.git*
-```
+These `.zip` files are suitable for uploading to the Chrome Web Store and Mozilla Add-ons (AMO) respectively.
 
 ```

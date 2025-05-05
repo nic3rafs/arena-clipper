@@ -1,0 +1,24 @@
+{
+  "name": "arena-clipper",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:firefox": "BROWSER=firefox vite",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "build:chrome": "pnpm clean && tsc && vite build && cd dist && zip -r -FS ../arena-clipper-chrome.zip . && cd ..",
+    "build:firefox": "pnpm clean && tsc && BROWSER=firefox vite build && cd dist && zip -r -FS ../arena-clipper-firefox.zip . && cd .."
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/webextension-polyfill": "^0.12.3",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.1"
+  },
+  "dependencies": {
+    "vite-plugin-web-extension": "^4.4.3",
+    "webextension-polyfill": "^0.12.0"
+  }
+}

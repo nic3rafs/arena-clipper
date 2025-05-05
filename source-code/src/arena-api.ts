@@ -3,7 +3,7 @@ import browser from "webextension-polyfill";
 // CLIENT_ID and REDIRECT removed - handled by background script
 // console.log("Are.na Redirect URL:", REDIRECT); // Removed - not needed here
 
-type Board = { id: number; title: string };
+export type Board = { id: number; title: string };
 
 // Type for the response from the background script
 interface TokenResponse {

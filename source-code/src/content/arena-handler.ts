@@ -16,7 +16,7 @@ interface ArenaEventDetail {
 }
 
 // Define Board type if not exported from api
-type Board = { id: number; title: string };
+// type Board = { id: number; title: string }; // Removed - unused locally, inferred from imports
 
 document.addEventListener("image:arena", (async (e: Event) => { // Use generic Event and cast inside
   // Type assertion for CustomEvent
