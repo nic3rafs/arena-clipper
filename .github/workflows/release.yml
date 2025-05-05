@@ -6,6 +6,11 @@ on:
       - 'v*' # Triggers on tag push matching v*, like v1.0.0
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
+# Add permissions needed for creating releases
+permissions:
+  contents: write
+  discussions: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest
