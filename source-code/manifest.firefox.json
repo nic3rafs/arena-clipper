@@ -21,12 +21,6 @@
         "js": [
           "src/content/core-overlay.js"
         ]
-      },
-      {
-        "matches": ["<all_urls>"],
-        "js": [
-          "src/content/arena-handler.js"
-        ]
       }
     ],
     "browser_specific_settings": {

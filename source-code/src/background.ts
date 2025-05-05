@@ -1,18 +1,16 @@
 import browser from "webextension-polyfill";
 
-
-
 // ---- Are.na Auth Logic ----
 const CLIENT_ID = "ZMhCuoCSLMPEEHAv-ouY1Lk36bTwV-iNbJkL_q7zAjs";
-// Calculate REDIRECT_URL within the background script context
+
 let REDIRECT_URL: string;
 try {
   REDIRECT_URL = browser.identity.getRedirectURL();
+  // console.log("REDIRECT_URL", REDIRECT_URL); // Keep commented for occasional debugging if needed
 } catch (e) {
   console.error("Error getting redirect URL. Ensure 'identity' permission is in manifest.", e);
-  REDIRECT_URL = ""; // Fallback or handle error appropriately
+  REDIRECT_URL = "";
 }
-
 
 async function ensureToken(): Promise<string | null> {
     if (!REDIRECT_URL) {
@@ -23,7 +21,7 @@ async function ensureToken(): Promise<string | null> {
     const storageResult = await browser.storage.local.get("token");
 
     try {
-      const token = storageResult?.token as string | undefined; // Try accessing from logged result
+      const token = storageResult?.token as string | undefined;
 
       if (token) {
         return token;
@@ -33,7 +31,6 @@ async function ensureToken(): Promise<string | null> {
         `https://dev.are.na/oauth/authorize?response_type=code` +
         `&client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URL)}`;
   
-      // Make sure popups are not blocked for the extension
       const redirectUriWithCode = await browser.identity.launchWebAuthFlow({ url: authUrl, interactive: true });
   
       // --- Step 2: Exchange code for token --- 
@@ -50,8 +47,7 @@ async function ensureToken(): Promise<string | null> {
           grant_type: "authorization_code",
           code: code,
           client_id: CLIENT_ID,
-          redirect_uri: REDIRECT_URL // Must match the one used in the initial request
-          // Note: Are.na doesn't typically require client_secret for this flow with installed apps
+          redirect_uri: REDIRECT_URL
       });
   
       const tokenResponse = await fetch(tokenUrl, {
@@ -80,41 +76,39 @@ async function ensureToken(): Promise<string | null> {
       return accessToken;
     } catch (error) {
         console.error("Error in ensureToken (background):", error);
-        // Check if user closed the auth window or other specific errors
         if (error instanceof Error && (error.message.includes("cancelled") || error.message.includes("closed"))) {
           return null; 
         }
-        // Rethrow or handle other errors if needed
         return null;
     }
   }
 // ---- End Auth Logic ----
 
 browser.runtime.onInstalled.addListener(() => {
+  // Perform any setup on installation if needed
 });
 
 // Listen for messages from content scripts
 // @ts-ignore - Linter struggles with async listener return type (true | undefined)
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    // Type guard to safely check message structure
     if (typeof message !== 'object' || message === null || !('type' in message) || typeof message.type !== 'string') {
         console.warn("Received malformed message:", message);
-        return; // Return undefined for sync handling
+        // Synchronous return path (effectively returns undefined)
+        return;
     }
 
-    // Now safely access message.type
     if (message.type === "GET_ARENA_TOKEN") {
-        // Call ensureToken and send the result back asynchronously
+        // Asynchronous path: Start the async operation and return true immediately.
         ensureToken().then(token => {
             sendResponse({ token: token });
         }).catch(error => {
             console.error("Error handling GET_ARENA_TOKEN:", error);
-            sendResponse({ token: null, error: error.message }); // Send error back
+            sendResponse({ token: null, error: error.message });
         });
-        return true; // Indicate async response
+        return true; 
     }
 
-    // If message type is not handled, return undefined (sync handling)
-    return;
+    // If message type is not GET_ARENA_TOKEN, do nothing and let the function end.
+    // This is implicitly a synchronous return path (returns undefined).
 });
 

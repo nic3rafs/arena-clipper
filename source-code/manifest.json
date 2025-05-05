@@ -16,12 +16,6 @@
         "js": [
           "src/content/core-overlay.ts"
         ]
-      },
-      {
-        "matches": ["<all_urls>"],
-        "js": [
-          "src/content/arena-handler.ts"
-        ]
       }
     ],
   

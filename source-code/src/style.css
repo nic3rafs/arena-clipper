@@ -32,6 +32,8 @@
     width: 60%;
     height: 60%;
     filter: invert(1);
+    display: inline-block;
+    margin: auto;
 }
 
 .arena-save-button .arena-status-text {
@@ -39,6 +41,8 @@
     font-size: 16px;
     line-height: 1;
     color: white;
+    text-align: center;
+    margin: auto;
 }
 
 .arena-save-button:hover {
@@ -64,11 +68,6 @@
     font-weight: 600;
     margin-bottom: 8px;
     text-align: center;
-}
-
-.arena-board-selector-recents,
-.arena-board-selector-search {
-    /* margin-bottom: 10px; */
 }
 
 .arena-list-title {
