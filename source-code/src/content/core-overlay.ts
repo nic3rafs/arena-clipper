@@ -302,7 +302,7 @@ export function showBoardSelector(
         document.addEventListener("click", clickOutsideHandler, true);
     }, 0);
 
-    searchInputEl.focus(); 
+
     searchInputEl.select();
 
     return selectionPromise;
